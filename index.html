@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>University Portal Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0b1120;
+      --bg-card: #020617;
+      --accent: #facc15;         /* yellow */
+      --accent-soft: rgba(250, 204, 21, 0.12);
+      --accent-strong: #f59e0b;
+      --text: #f9fafb;
+      --text-soft: #9ca3af;
+      --border-subtle: #1f2937;
+      --success: #22c55e;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ========== LOGIN LAYER ========== */
+    .login-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, #111827 0, #020617 75%);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-subtle);
+      padding: 24px 24px 20px;
+    }
+
+    .login-header {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .login-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: conic-gradient(from 140deg, #fbbf24, #facc15, #fbbf24, #facc15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.7);
+      color: #020617;
+    }
+
+    .login-title-group span:first-child {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .login-title-group span:last-child {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .login-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-bottom: 2px;
+    }
+
+    .field-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+    }
+
+    .field-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.5);
+    }
+
+    .login-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .login-btn {
+      width: 100%;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fbbf24, #facc15);
+      color: #111827;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    .login-btn:hover {
+      filter: brightness(1.05);
+    }
+
+    .login-note {
+      font-size: 10px;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    .login-error {
+      display: none;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #fecaca;
+      background: rgba(239, 68, 68, 0.14);
+      border-radius: 8px;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 6px 8px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .hint code {
+      background: rgba(15, 23, 42, 0.9);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    /* ========== APP SHELL (portal) ========== */
+    .app-shell {
+      display: none; /* hidden until login success */
+      grid-template-columns: 260px minmax(0, 1fr);
+      max-width: 1200px;
+      width: 100%;
+      background: #020617;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid #1f2937;
+      box-shadow: var(--shadow-soft);
+      margin: 24px auto;
+    }
+
+    @media (max-width: 900px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+    }
+
+    .sidebar {
+      background: radial-gradient(circle at top left, #facc15 0, #020617 45%);
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 16px;
+      background: conic-gradient(from 140deg, #fbbf24, #facc15, #f59e0b, #facc15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #020617;
+      box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.7);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-text span:first-child {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .brand-text span:last-child {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .sidebar-section-title {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-item {
+      border-radius: 999px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-soft);
+      border: 1px solid transparent;
+      transition: 0.15s ease-out;
+    }
+
+    .nav-item span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-item:hover {
+      background: rgba(15, 23, 42, 0.7);
+      border-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .nav-item.active {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: var(--accent);
+      color: var(--text);
+      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.4);
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      opacity: 0.9;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(250, 204, 21, 0.25));
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sidebar-footer strong {
+      font-size: 13px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 11px;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .main {
+      background: radial-gradient(circle at top center, #111827 0, #020617 60%);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .topbar-title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .topbar-title h1 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .topbar-title span {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(140deg, #fbbf24, #facc15);
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .content {
+      flex: 1;
+      border-radius: 22px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      padding: 18px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow: hidden;
+    }
+
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .content-tabs {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 4px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-subtle);
+      gap: 4px;
+    }
+
+    .content-tab {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--text-soft);
+      transition: 0.15s ease-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .content-tab.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.7);
+    }
+
+    .metrics {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .metric-card {
+      flex: 1 1 120px;
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 140px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .metric-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .metric-subtext {
+      font-size: 11px;
+      color: rgba(250, 204, 21, 0.9);
+    }
+
+    .metric-subtext-muted {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .views {
+      flex: 1;
+      border-radius: 18px;
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      padding: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .view {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .view.active {
+      display: flex;
+    }
+
+    /* Dashboard / Courses */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .course-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: linear-gradient(155deg, #020617, #020617, #111827);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .course-card:hover {
+      border-color: rgba(250, 204, 21, 0.65);
+      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.4);
+    }
+
+    .course-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .grade-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .course-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .course-meta strong {
+      color: var(--text);
+    }
+
+    .course-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .pill-small {
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .course-highlight {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(250, 204, 21, 0.18), transparent 55%);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    /* Course detail feed */
+    .course-detail-container {
+      margin-top: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 12px;
+      background: radial-gradient(circle at top, #020617 0, #020617 75%);
+    }
+
+    .course-detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .course-detail-header h3 {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .course-detail-header span {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .course-feed {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .course-feed.active {
+      display: flex;
+    }
+
+    .course-post {
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .course-post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .course-post-title {
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    .course-post-meta {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .course-post-body {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    /* Grades view */
+    .grades-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
+      gap: 12px;
+      height: 100%;
+    }
+
+    @media (max-width: 720px) {
+      .grades-layout { grid-template-columns: 1fr; }
+    }
+
+    .table-card,
+    .detail-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: #020617;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-soft);
+      gap: 8px;
+    }
+
+    .table-header strong {
+      color: var(--text);
+    }
+
+    .grades-table-wrapper {
+      margin-top: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead {
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    th,
+    td {
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+    }
+
+    th {
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .grade-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 3px 10px;
+      background: rgba(250, 204, 21, 0.15);
+      color: #fef9c3;
+      font-size: 11px;
+      border: 1px solid rgba(250, 204, 21, 0.7);
+    }
+
+    .grade-pill .letter {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .detail-item .label {
+      color: var(--text-soft);
+    }
+
+    .detail-item .value {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .progress-bar {
+      margin-top: 4px;
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #fbbf24, #facc15);
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 3px 8px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      color: var(--text-soft);
+    }
+
+    /* Coursework view */
+    .subtabs {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 3px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--border-subtle);
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .subtab-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-soft);
+    }
+
+    .subtab-btn.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.6);
+    }
+
+    .coursework-section {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .coursework-section.active {
+      display: flex;
+    }
+
+    /* Classmates view */
+    .classmates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .classmate-card {
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 10px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .classmate-name {
+      font-weight: 500;
+      font-size: 13px;
+    }
+
+    .classmate-meta {
+      color: var(--text-soft);
+      font-size: 11px;
+    }
+
+    .classmate-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .classmate-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-soft);
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN VIEW -->
+  <div class="login-shell" id="login-shell">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">U</div>
+        <div class="login-title-group">
+          <span>Kennesaw State University</span>
+          <span>Student Portal</span>
+        </div>
+      </div>
+      <p class="login-subtitle">
+              </p>
+      <form class="login-form" id="login-form">
+        <div>
+          <div class="field-label">Username</div>
+          <input class="field-input" type="text" id="username" autocomplete="off" required />
+        </div>
+        <div>
+          <div class="field-label">Password</div>
+          <input class="field-input" type="password" id="password" required />
+        </div>
+        <div class="login-row">
+          <label class="remember-me">
+            <input type="checkbox" style="accent-color:#facc15; width:12px; height:12px;" />
+            Remember me
+          </label>
+          <span>Need help?</span>
+        </div>
+        <button type="submit" class="login-btn">Sign In</button>
+      </form>
+      <div class="login-error" id="login-error">
+        Invalid credentials. For this demo, use:<br>
+        <strong>Username:</strong> mross112@students.kennesaw.edu &nbsp;•&nbsp;
+        <strong>Password:</strong> password123
+      </div>
+      <div class="hint">
+        
+      </div>
+      <p class="login-note">
+        
+      </p>
+    </div>
+  </div>
+
+  <!-- APP VIEW (dashboard) -->
+  <div class="app-shell" id="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">P</div>
+        <div class="brand-text">
+          <span>Portal</span>
+          <span>Term: Fall 2025</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Navigation</div>
+        <div class="nav-list">
+          <div class="nav-item active" data-target="dashboard">
+            <span>Dashboard</span>
+            <span class="nav-dot"></span>
+          </div>
+          <div class="nav-item" data-target="grades">
+            <span>Grades</span>
+          </div>
+          <div class="nav-item" data-target="coursework">
+            <span>Coursework</span>
+          </div>
+          <div class="nav-item" data-target="classmates">
+            <span>Classmates</span>
+          </div>
+          <div class="nav-item" data-target="profile">
+            <span>Profile</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Courses</div>
+        <div class="nav-list">
+          <div class="nav-item">
+            <span>Accounting 101</span>
+            <span class="nav-dot"></span>
+          </div>
+          <div class="nav-item">
+            <span>Religion</span>
+            <span class="nav-dot"></span>
+          </div>
+          <div class="nav-item">
+            <span>Business Communications</span>
+            <span class="nav-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <strong>Current Standing</strong>
+        <div class="pill">
+          <span class="pill-dot"></span>
+          3.9 GPA • Excellent standing
+        </div>
+        <span>You are maintaining strong academic performance this term.</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-title">
+          <h1>Welcome back, Michael Ross</h1>
+          <span>Here’s a snapshot of your courses and progress.</span>
+        </div>
+        <div class="topbar-right">
+          <div class="badge">
+            Term Progress
+            <span style="width: 70px; height: 4px; border-radius: 999px; background: rgba(15,23,42,0.9); overflow: hidden;">
+              <span style="display:block; height:100%; width:72%; background: linear-gradient(90deg,#fbbf24,#facc15);"></span>
+            </span>
+            72%
+          </div>
+          <div class="avatar">MR</div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="content-header">
+          <div class="content-tabs">
+            <button class="content-tab active" data-target="dashboard">Overview</button>
+            <button class="content-tab" data-target="grades">Grades</button>
+            <button class="content-tab" data-target="coursework">Coursework</button>
+            <button class="content-tab" data-target="classmates">Classmates</button>
+          </div>
+          <div class="metrics">
+            <div class="metric-card">
+              <span class="metric-label">Term GPA</span>
+              <span class="metric-value">3.9</span>
+              <span class="metric-subtext">Strong term performance</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Enrolled Courses</span>
+              <span class="metric-value">3</span>
+              <span class="metric-subtext-muted">Accounting, Religion, Business Comm.</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-label">Assignments Submitted</span>
+              <span class="metric-value">18 / 18</span>
+              <span class="metric-subtext">100% submitted on time</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="views">
+          <!-- Dashboard view -->
+          <div class="view active" id="dashboard">
+            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Current Courses</h2>
+            <div class="courses-grid">
+              <article class="course-card" data-course="accounting">
+                <div class="course-highlight"></div>
+                <div class="course-badge">
+                  <span class="grade-dot"></span>
+                  Accounting 101 • Current grade: 96%
+                </div>
+                <div class="course-title">Accounting 101: Principles of Financial Accounting</div>
+                <div class="course-meta">
+                  <span>Instructor: <strong>Dr. Lee</strong></span>
+                  <span>Credits: <strong>3</strong></span>
+                </div>
+                <div class="course-footer">
+                  <div>
+                    Next Due: <strong>Chapter 5 Quiz</strong>
+                    <span style="color: var(--text-soft);"> • Due Sun</span>
+                  </div>
+                  <div class="pill-small">
+                    Attendance: <strong>100%</strong>
+                  </div>
+                </div>
+              </article>
+
+              <article class="course-card" data-course="religion">
+                <div class="course-highlight" style="background: radial-gradient(circle at top, rgba(250,204,21,0.22), transparent 55%);"></div>
+                <div class="course-badge">
+                  <span class="grade-dot"></span>
+                  Religion • Current grade: 93%
+                </div>
+                <div class="course-title">Intro to Religion: World Beliefs & Traditions</div>
+                <div class="course-meta">
+                  <span>Instructor: <strong>Prof. Kumar</strong></span>
+                  <span>Credits: <strong>3</strong></span>
+                </div>
+                <div class="course-footer">
+                  <div>
+                    Next Due: <strong>Reflection Journal 3</strong>
+                    <span style="color: var(--text-soft);"> • Due Tue</span>
+                  </div>
+                  <div class="pill-small">
+                    Participation: <strong>High</strong>
+                  </div>
+                </div>
+              </article>
+
+              <article class="course-card" data-course="business">
+                <div class="course-highlight" style="background: radial-gradient(circle at top, rgba(250,204,21,0.2), transparent 55%);"></div>
+                <div class="course-badge">
+                  <span class="grade-dot"></span>
+                  Business Comm. • Current grade: 95%
+                </div>
+                <div class="course-title">Business Communications</div>
+                <div class="course-meta">
+                  <span>Instructor: <strong>Ms. Carter</strong></span>
+                  <span>Credits: <strong>3</strong></span>
+                </div>
+                <div class="course-footer">
+                  <div>
+                    Next Due: <strong>Presentation Outline</strong>
+                    <span style="color: var(--text-soft);"> • Due Fri</span>
+                  </div>
+                  <div class="pill-small">
+                    Group work: <strong>On track</strong>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Course detail feed -->
+            <div class="course-detail-container">
+              <div class="course-detail-header">
+                <h3 id="course-detail-title">Course Feed</h3>
+                <span id="course-detail-subtitle">Select a course above to view recent professor posts.</span>
+              </div>
+
+              <div class="course-feed" data-course="accounting">
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Welcome to Accounting 101</div>
+                    <div class="course-post-meta">Posted by Dr. Lee • August 19, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Welcome to the course, everyone. Please review the syllabus and complete the introductory discussion
+                    post by the end of the week. Office hours are Tuesdays and Thursdays from 2–4 PM.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Chapter 2 Practice Problems</div>
+                    <div class="course-post-meta">Posted by Dr. Lee • September 3, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Practice problems for Chapter 2 have been posted under Content. They are not graded but will prepare
+                    you for Quiz 1. Aim to complete them by Sunday night.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Midterm Exam Details</div>
+                    <div class="course-post-meta">Posted by Dr. Lee • October 10, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    The midterm exam will be held on October 17, 2025. It will cover Chapters 1–5. A review guide has
+                    been uploaded and we will spend next class going over sample problems.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Midterm Feedback Posted</div>
+                    <div class="course-post-meta">Posted by Dr. Lee • October 20, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Midterm scores and feedback are now posted in the Grades area. Please review your results and reach
+                    out if you’d like to discuss any questions during office hours.
+                  </div>
+                </div>
+              </div>
+
+              <div class="course-feed" data-course="religion">
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Course Introduction & Syllabus</div>
+                    <div class="course-post-meta">Posted by Prof. Kumar • August 20, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Welcome to Intro to Religion. This semester we’ll explore major world traditions and their
+                    historical contexts. Please read the syllabus and complete the short “beliefs survey” by Friday.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Reading Schedule – Weeks 1–4</div>
+                    <div class="course-post-meta">Posted by Prof. Kumar • August 25, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    I’ve posted a detailed reading schedule for the first four weeks under Content. Please come to class
+                    having completed the readings so we can focus on discussion and case studies.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Reflection Journal Reminder</div>
+                    <div class="course-post-meta">Posted by Prof. Kumar • September 12, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Reflection Journal 2 is due Sunday at 11:59 PM. Be sure to connect your observations to at least one
+                    in-class discussion and one assigned reading.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Midterm Essay Prompt</div>
+                    <div class="course-post-meta">Posted by Prof. Kumar • October 8, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    The midterm essay prompt has been posted. Drafts are due October 18, 2025, with final submissions due
+                    October 24, 2025. We will workshop thesis statements in class next week.
+                  </div>
+                </div>
+              </div>
+
+              <div class="course-feed" data-course="business">
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Welcome to Business Communications</div>
+                    <div class="course-post-meta">Posted by Ms. Carter • August 19, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Welcome, everyone. This course will focus on professional writing, presentations, and team
+                    communication. Please introduce yourself in the “Course Introductions” discussion by Wednesday.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Email Etiquette Module Live</div>
+                    <div class="course-post-meta">Posted by Ms. Carter • September 2, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    The module on professional email etiquette is now available. Complete the sample email exercise and
+                    submit your revised message by Sunday night.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Group Presentation Guidelines</div>
+                    <div class="course-post-meta">Posted by Ms. Carter • October 1, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Presentation guidelines and rubrics have been posted. Please confirm your group topic in the
+                    “Project Topics” discussion by October 5, 2025.
+                  </div>
+                </div>
+                <div class="course-post">
+                  <div class="course-post-header">
+                    <div class="course-post-title">Midterm Presentation Check-In</div>
+                    <div class="course-post-meta">Posted by Ms. Carter • October 15, 2025</div>
+                  </div>
+                  <div class="course-post-body">
+                    Midterm presentations begin next week. You should now have your slide outline ready. Bring a draft to
+                    our next class for peer review and feedback.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grades view -->
+          <div class="view" id="grades">
+            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Grades • All Courses </h2>
+            <div class="grades-layout">
+              <div class="table-card">
+                <div class="table-header">
+                  <strong>Course Grades</strong>
+                  <span>Overview of current grade components</span>
+                </div>
+                <div class="grades-table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Course</th>
+                        <th>Category</th>
+                        <th>Grade</th>
+                        <th>Completed</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Accounting 101</td>
+                        <td>Exams & Quizzes</td>
+                        <td>
+                          <span class="grade-pill">
+                            <span class="letter">A</span>
+                            <span>• 96%</span>
+                          </span>
+                        </td>
+                        <td>5 / 5</td>
+                        <td>On track</td>
+                      </tr>
+                      <tr>
+                        <td>Accounting 101</td>
+                        <td>Homework & Practice</td>
+                        <td>
+                          <span class="grade-pill">
+                            <span class="letter">A</span>
+                            <span>• 97%</span>
+                          </span>
+                        </td>
+                        <td>7 / 7</td>
+                        <td>On track</td>
+                      </tr>
+                      <tr>
+                        <td>Religion</td>
+                        <td>Essays & Reflections</td>
+                        <td>
+                          <span class="grade-pill">
+                            <span class="letter">A-</span>
+                            <span>• 93%</span>
+                          </span>
+                        </td>
+                        <td>4 / 4</td>
+                        <td>On track</td>
+                      </tr>
+                      <tr>
+                        <td>Religion</td>
+                        <td>Participation</td>
+                        <td>
+                          <span class="grade-pill">
+                            <span class="letter">A</span>
+                            <span>• 98%</span>
+                          </span>
+                        </td>
+                        <td>Fully met</td>
+                        <td>Strong</td>
+                      </tr>
+                      <tr>
+                        <td>Business Communications</td>
+                        <td>Written Assignments</td>
+                        <td>
+                          <span class="grade-pill">
+                            <span class="letter">A</span>
+                            <span>• 95%</span>
+                          </span>
+                        </td>
+                        <td>3 / 3</td>
+                        <td>On track</td>
+                      </tr>
+                      <tr>
+                        <td>Business Communications</td>
+                        <td>Presentations</td>
+                        <td>
+                          <span class="grade-pill">
+                            <span class="letter">A</span>
+                            <span>• 96%</span>
+                          </span>
+                        </td>
+                        <td>2 / 2</td>
+                        <td>On track</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="detail-card">
+                <div class="table-header">
+                  <strong>Term Summary</strong>
+                  <span> Academic Snapshot</span>
+                </div>
+                <div class="detail-list">
+                  <div class="detail-item">
+                    <span class="label">GPA (Current Term)</span>
+                    <span class="value">3.9</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                  </div>
+                  <div class="detail-item">
+                    <span class="label">Total Credits In Progress</span>
+                    <span class="value">9 credits</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="label">Assignments Completed</span>
+                    <span class="value">18 / 18 (100%)</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="label">Late / Missing Work</span>
+                    <span class="value" style="color: var(--success);">0 items</span>
+                  </div>
+                </div>
+                <div class="tags-row">
+                  <span class="tag">Consistent performance</span>
+                  <span class="tag">Strong engagement</span>
+                  <span class="tag">All data </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coursework view (completed assignments + midterms) -->
+          <div class="view" id="coursework">
+            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Coursework • Completed Work & Midterms </h2>
+            <div class="subtabs">
+              <button class="subtab-btn active" data-section="assignments">Completed Assignments</button>
+              <button class="subtab-btn" data-section="midterms">Midterms</button>
+            </div>
+
+            <div class="coursework-section active" data-section="assignments">
+              <div class="table-card">
+                <div class="table-header">
+                  <strong>Completed Assignments</strong>
+                  <span>Recent submissions with due dates</span>
+                </div>
+                <div class="grades-table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Course</th>
+                        <th>Assignment</th>
+                        <th>Due Date</th>
+                        <th>Submitted</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Accounting 101</td>
+                        <td>Homework Set 1</td>
+                        <td>August 28, 2025</td>
+                        <td>On time</td>
+                        <td>97%</td>
+                      </tr>
+                      <tr>
+                        <td>Accounting 101</td>
+                        <td>Quiz 1</td>
+                        <td>September 4, 2025</td>
+                        <td>On time</td>
+                        <td>94%</td>
+                      </tr>
+                      <tr>
+                        <td>Religion</td>
+                        <td>Reflection Journal 1</td>
+                        <td>September 1, 2025</td>
+                        <td>On time</td>
+                        <td>92%</td>
+                      </tr>
+                      <tr>
+                        <td>Religion</td>
+                        <td>Short Essay: Ritual & Meaning</td>
+                        <td>September 15, 2025</td>
+                        <td>On time</td>
+                        <td>95%</td>
+                      </tr>
+                      <tr>
+                        <td>Business Communications</td>
+                        <td>Professional Email Draft</td>
+                        <td>September 10, 2025</td>
+                        <td>On time</td>
+                        <td>96%</td>
+                      </tr>
+                      <tr>
+                        <td>Business Communications</td>
+                        <td>Memo: Internal Update</td>
+                        <td>September 22, 2025</td>
+                        <td>On time</td>
+                        <td>94%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="coursework-section" data-section="midterms">
+              <div class="table-card">
+                <div class="table-header">
+                  <strong>Midterm Overview</strong>
+                  <span> midterm milestones</span>
+                </div>
+                <div class="grades-table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Course</th>
+                        <th>Midterm Type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Accounting 101</td>
+                        <td>Written Exam</td>
+                        <td>October 17, 2025</td>
+                        <td>Completed</td>
+                        <td>95%</td>
+                      </tr>
+                      <tr>
+                        <td>Religion</td>
+                        <td>Midterm Essay</td>
+                        <td>October 24, 2025</td>
+                        <td>Completed</td>
+                        <td>93%</td>
+                      </tr>
+                      <tr>
+                        <td>Business Communications</td>
+                        <td>Midterm Presentation</td>
+                        <td>October 21, 2025</td>
+                        <td>Completed</td>
+                        <td>96%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Classmates view -->
+          <div class="view" id="classmates">
+            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Classmates </h2>
+            <p style="font-size:12px; color: var(--text-soft); margin-bottom:8px;">
+              Classmates enrolled in your current courses.
+            </p>
+            <div class="classmates-grid">
+              <div class="classmate-card">
+                <div class="classmate-name">Jordan Mitchell</div>
+                <div class="classmate-meta">Accounting 101, Business Communications</div>
+                <div class="classmate-meta">Major: Finance • Year: Sophomore</div>
+                <div class="classmate-tags">
+                  <span class="classmate-tag">Study group regular</span>
+                  <span class="classmate-tag">Prefers morning classes</span>
+                </div>
+              </div>
+
+              <div class="classmate-card">
+                <div class="classmate-name">Avery Collins</div>
+                <div class="classmate-meta">Accounting 101, Religion</div>
+                <div class="classmate-meta">Major: Accounting • Year: Junior</div>
+                <div class="classmate-tags">
+                  <span class="classmate-tag">Shared notes</span>
+                  <span class="classmate-tag">Good at practice problems</span>
+                </div>
+              </div>
+
+              <div class="classmate-card">
+                <div class="classmate-name">Riley Thompson</div>
+                <div class="classmate-meta">Religion, Business Communications</div>
+                <div class="classmate-meta">Major: Marketing • Year: Sophomore</div>
+                <div class="classmate-tags">
+                  <span class="classmate-tag">Group presentation partner</span>
+                  <span class="classmate-tag">Strong presenter</span>
+                </div>
+              </div>
+
+              <div class="classmate-card">
+                <div class="classmate-name">Casey Nguyen</div>
+                <div class="classmate-meta">Accounting 101</div>
+                <div class="classmate-meta">Major: Management • Year: Freshman</div>
+                <div class="classmate-tags">
+                  <span class="classmate-tag">Often visits office hours</span>
+                  <span class="classmate-tag">Organized notes</span>
+                </div>
+              </div>
+
+              <div class="classmate-card">
+                <div class="classmate-name">Taylor Brooks</div>
+                <div class="classmate-meta">Business Communications</div>
+                <div class="classmate-meta">Major: Business Admin • Year: Senior</div>
+                <div class="classmate-tags">
+                  <span class="classmate-tag">Experienced in presentations</span>
+                  <span class="classmate-tag">Peer feedback leader</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile placeholder -->
+          <div class="view" id="profile">
+            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Profile • Michael Ross </h2>
+            <p style="font-size:12px; color: var(--text-soft);">
+              This profile section is a placeholder. You can expand it with additional details such as major,
+              contact information, advising notes, and goals to match your use case.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Demo login logic
+    const loginForm = document.getElementById("login-form");
+    const loginShell = document.getElementById("login-shell");
+    const appShell = document.getElementById("app-shell");
+    const loginError = document.getElementById("login-error");
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (username === "mross112@students.kennesaw.edu" && password === "password123") {
+        loginError.style.display = "none";
+        loginShell.style.display = "none";
+        appShell.style.display = "grid";
+        window.scrollTo(0, 0);
+      } else {
+        loginError.style.display = "block";
+      }
+    });
+
+    // Tabs and sidebar view switching
+    const contentTabs = document.querySelectorAll(".content-tab");
+    const views = document.querySelectorAll(".view");
+    const sideNavItems = document.querySelectorAll(".sidebar .nav-item[data-target]");
+
+    function activateView(targetId) {
+      views.forEach(v => v.classList.toggle("active", v.id === targetId));
+      contentTabs.forEach(t => t.classList.toggle("active", t.dataset.target === targetId));
+      sideNavItems.forEach(i => i.classList.toggle("active", i.dataset.target === targetId));
+    }
+
+    contentTabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        activateView(tab.dataset.target);
+      });
+    });
+
+    sideNavItems.forEach(item => {
+      item.addEventListener("click", () => {
+        const target = item.dataset.target;
+        if (target) {
+          activateView(target);
+        }
+      });
+    });
+
+    // Coursework subtabs
+    const subtabButtons = document.querySelectorAll(".subtab-btn");
+    const courseworkSections = document.querySelectorAll(".coursework-section");
+
+    subtabButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const section = btn.dataset.section;
+        subtabButtons.forEach(b => b.classList.toggle("active", b.dataset.section === section));
+        courseworkSections.forEach(s => s.classList.toggle("active", s.dataset.section === section));
+      });
+    });
+
+    // Course feed interactions
+    const courseCards = document.querySelectorAll(".course-card");
+    const courseFeeds = document.querySelectorAll(".course-feed");
+    const courseDetailTitle = document.getElementById("course-detail-title");
+    const courseDetailSubtitle = document.getElementById("course-detail-subtitle");
+
+    function showCourseFeed(courseKey) {
+      courseFeeds.forEach(feed => {
+        feed.classList.toggle("active", feed.dataset.course === courseKey);
+      });
+
+      if (courseKey === "accounting") {
+        courseDetailTitle.textContent = "Accounting 101 – Course Feed";
+        courseDetailSubtitle.textContent = "Announcements and updates from Dr. Lee .";
+      } else if (courseKey === "religion") {
+        courseDetailTitle.textContent = "Religion – Course Feed";
+        courseDetailSubtitle.textContent = "Announcements and updates from Prof. Kumar .";
+      } else if (courseKey === "business") {
+        courseDetailTitle.textContent = "Business Communications – Course Feed";
+        courseDetailSubtitle.textContent = "Announcements and updates from Ms. Carter .";
+      }
+    }
+
+    courseCards.forEach(card => {
+      card.addEventListener("click", () => {
+        const courseKey = card.dataset.course;
+        if (courseKey) {
+          showCourseFeed(courseKey);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
