@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>University Portal Demo</title>
+  <title>University Portal </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
       --bg: #020617;
       --bg-soft: #0b1120;
       --bg-card: #020617;
-      --accent: #facc15;         /* yellow */
+      --accent: #facc15;
       --accent-soft: rgba(250, 204, 21, 0.12);
       --accent-strong: #f59e0b;
       --text: #f9fafb;
@@ -30,7 +30,6 @@
       min-height: 100vh;
     }
 
-    /* ========== LOGIN LAYER ========== */
     .login-shell {
       min-height: 100vh;
       display: flex;
@@ -70,15 +69,8 @@
       color: #020617;
     }
 
-    .login-title-group span:first-child {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .login-title-group span:last-child {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
+    .login-title-group span:first-child { font-size: 14px; font-weight: 600; }
+    .login-title-group span:last-child { font-size: 12px; color: var(--text-soft); }
 
     .login-subtitle {
       font-size: 12px;
@@ -124,11 +116,7 @@
       margin-bottom: 4px;
     }
 
-    .remember-me {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .remember-me { display: flex; align-items: center; gap: 6px; }
 
     .login-btn {
       width: 100%;
@@ -143,9 +131,7 @@
       margin-top: 4px;
     }
 
-    .login-btn:hover {
-      filter: brightness(1.05);
-    }
+    .login-btn:hover { filter: brightness(1.05); }
 
     .login-note {
       font-size: 10px;
@@ -177,11 +163,10 @@
       font-size: 11px;
     }
 
-    /* ========== APP SHELL (portal) ========== */
     .app-shell {
-      display: none; /* hidden until login success */
+      display: none;
       grid-template-columns: 260px minmax(0, 1fr);
-      max-width: 1200px;
+      max-width: 1250px;
       width: 100%;
       background: #020617;
       border-radius: 28px;
@@ -204,11 +189,7 @@
       gap: 24px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .brand { display: flex; align-items: center; gap: 12px; }
 
     .brand-logo {
       width: 36px;
@@ -224,11 +205,7 @@
       box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.7);
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+    .brand-text { display: flex; flex-direction: column; gap: 2px; }
 
     .brand-text span:first-child {
       font-weight: 600;
@@ -237,10 +214,7 @@
       text-transform: uppercase;
     }
 
-    .brand-text span:last-child {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
+    .brand-text span:last-child { font-size: 11px; color: var(--text-soft); }
 
     .sidebar-section-title {
       font-size: 11px;
@@ -250,11 +224,7 @@
       margin-bottom: 6px;
     }
 
-    .nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .nav-list { display: flex; flex-direction: column; gap: 6px; }
 
     .nav-item {
       border-radius: 999px;
@@ -270,11 +240,7 @@
       transition: 0.15s ease-out;
     }
 
-    .nav-item span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .nav-item span { display: flex; align-items: center; gap: 8px; }
 
     .nav-item:hover {
       background: rgba(15, 23, 42, 0.7);
@@ -308,9 +274,7 @@
       gap: 6px;
     }
 
-    .sidebar-footer strong {
-      font-size: 13px;
-    }
+    .sidebar-footer strong { font-size: 13px; }
 
     .pill {
       display: inline-flex;
@@ -345,27 +309,10 @@
       gap: 12px;
     }
 
-    .topbar-title {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .topbar-title h1 {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .topbar-title span {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .topbar-title { display: flex; flex-direction: column; gap: 2px; }
+    .topbar-title h1 { font-size: 18px; font-weight: 600; }
+    .topbar-title span { font-size: 12px; color: var(--text-soft); }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
 
     .badge {
       padding: 5px 10px;
@@ -420,6 +367,7 @@
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid var(--border-subtle);
       gap: 4px;
+      flex-wrap: wrap;
     }
 
     .content-tab {
@@ -442,11 +390,7 @@
       box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.7);
     }
 
-    .metrics {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
+    .metrics { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .metric-card {
       flex: 1 1 120px;
@@ -460,25 +404,10 @@
       min-width: 140px;
     }
 
-    .metric-label {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .metric-value {
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .metric-subtext {
-      font-size: 11px;
-      color: rgba(250, 204, 21, 0.9);
-    }
-
-    .metric-subtext-muted {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
+    .metric-label { font-size: 11px; color: var(--text-soft); }
+    .metric-value { font-size: 18px; font-weight: 600; }
+    .metric-subtext { font-size: 11px; color: rgba(250, 204, 21, 0.9); }
+    .metric-subtext-muted { font-size: 11px; color: var(--text-soft); }
 
     .views {
       flex: 1;
@@ -491,21 +420,12 @@
       flex-direction: column;
     }
 
-    .view {
-      display: none;
-      flex-direction: column;
-      gap: 14px;
-      height: 100%;
-    }
+    .view { display: none; flex-direction: column; gap: 14px; height: 100%; }
+    .view.active { display: flex; }
 
-    .view.active {
-      display: flex;
-    }
-
-    /* Dashboard / Courses */
     .courses-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 12px;
     }
 
@@ -546,10 +466,7 @@
       background: var(--accent);
     }
 
-    .course-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
+    .course-title { font-size: 15px; font-weight: 600; }
 
     .course-meta {
       display: flex;
@@ -558,9 +475,7 @@
       color: var(--text-soft);
     }
 
-    .course-meta strong {
-      color: var(--text);
-    }
+    .course-meta strong { color: var(--text); }
 
     .course-footer {
       margin-top: auto;
@@ -569,6 +484,7 @@
       align-items: center;
       font-size: 11px;
       color: var(--text-soft);
+      gap: 10px;
     }
 
     .pill-small {
@@ -579,6 +495,7 @@
       align-items: center;
       gap: 6px;
       background: rgba(15, 23, 42, 0.9);
+      white-space: nowrap;
     }
 
     .course-highlight {
@@ -589,7 +506,6 @@
       pointer-events: none;
     }
 
-    /* Course detail feed */
     .course-detail-container {
       margin-top: 14px;
       border-radius: 16px;
@@ -606,26 +522,11 @@
       margin-bottom: 8px;
     }
 
-    .course-detail-header h3 {
-      font-size: 14px;
-      font-weight: 600;
-    }
+    .course-detail-header h3 { font-size: 14px; font-weight: 600; }
+    .course-detail-header span { font-size: 11px; color: var(--text-soft); }
 
-    .course-detail-header span {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .course-feed {
-      display: none;
-      flex-direction: column;
-      gap: 10px;
-      font-size: 12px;
-    }
-
-    .course-feed.active {
-      display: flex;
-    }
+    .course-feed { display: none; flex-direction: column; gap: 10px; font-size: 12px; }
+    .course-feed.active { display: flex; }
 
     .course-post {
       border-radius: 12px;
@@ -639,24 +540,13 @@
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 4px;
+      gap: 10px;
     }
 
-    .course-post-title {
-      font-weight: 500;
-      font-size: 12px;
-    }
+    .course-post-title { font-weight: 500; font-size: 12px; }
+    .course-post-meta { font-size: 11px; color: var(--text-soft); text-align: right; }
+    .course-post-body { font-size: 12px; color: var(--text-soft); }
 
-    .course-post-meta {
-      font-size: 11px;
-      color: var(--text-soft);
-    }
-
-    .course-post-body {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    /* Grades view */
     .grades-layout {
       display: grid;
       grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
@@ -664,9 +554,7 @@
       height: 100%;
     }
 
-    @media (max-width: 720px) {
-      .grades-layout { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 720px) { .grades-layout { grid-template-columns: 1fr; } }
 
     .table-card,
     .detail-card {
@@ -689,26 +577,17 @@
       gap: 8px;
     }
 
-    .table-header strong {
-      color: var(--text);
-    }
+    .table-header strong { color: var(--text); }
 
     .grades-table-wrapper {
       margin-top: 4px;
       border-radius: 12px;
       border: 1px solid var(--border-subtle);
-      overflow: hidden;
+      overflow: auto;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    thead {
-      background: rgba(15, 23, 42, 0.98);
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 680px; }
+    thead { background: rgba(15, 23, 42, 0.98); }
 
     th,
     td {
@@ -717,14 +596,8 @@
       border-bottom: 1px solid rgba(31, 41, 55, 0.8);
     }
 
-    th {
-      font-weight: 500;
-      color: var(--text-soft);
-    }
-
-    tbody tr:nth-child(even) {
-      background: rgba(15, 23, 42, 0.6);
-    }
+    th { font-weight: 500; color: var(--text-soft); }
+    tbody tr:nth-child(even) { background: rgba(15, 23, 42, 0.6); }
 
     .grade-pill {
       display: inline-flex;
@@ -738,17 +611,9 @@
       border: 1px solid rgba(250, 204, 21, 0.7);
     }
 
-    .grade-pill .letter {
-      font-weight: 600;
-      font-size: 13px;
-    }
+    .grade-pill .letter { font-weight: 600; font-size: 13px; }
 
-    .detail-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 12px;
-    }
+    .detail-list { display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
 
     .detail-item {
       display: flex;
@@ -757,14 +622,8 @@
       gap: 10px;
     }
 
-    .detail-item .label {
-      color: var(--text-soft);
-    }
-
-    .detail-item .value {
-      color: var(--text);
-      font-weight: 500;
-    }
+    .detail-item .label { color: var(--text-soft); }
+    .detail-item .value { color: var(--text); font-weight: 500; }
 
     .progress-bar {
       margin-top: 4px;
@@ -782,12 +641,7 @@
       background: linear-gradient(90deg, #fbbf24, #facc15);
     }
 
-    .tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
+    .tags-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 
     .tag {
       font-size: 11px;
@@ -797,7 +651,6 @@
       color: var(--text-soft);
     }
 
-    /* Coursework view */
     .subtabs {
       display: inline-flex;
       border-radius: 999px;
@@ -824,17 +677,9 @@
       box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.6);
     }
 
-    .coursework-section {
-      display: none;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .coursework-section { display: none; flex-direction: column; gap: 8px; }
+    .coursework-section.active { display: flex; }
 
-    .coursework-section.active {
-      display: flex;
-    }
-
-    /* Classmates view */
     .classmates-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -852,22 +697,10 @@
       gap: 4px;
     }
 
-    .classmate-name {
-      font-weight: 500;
-      font-size: 13px;
-    }
+    .classmate-name { font-weight: 500; font-size: 13px; }
+    .classmate-meta { color: var(--text-soft); font-size: 11px; }
 
-    .classmate-meta {
-      color: var(--text-soft);
-      font-size: 11px;
-    }
-
-    .classmate-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 4px;
-    }
+    .classmate-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
 
     .classmate-tag {
       font-size: 10px;
@@ -876,28 +709,116 @@
       border: 1px solid rgba(148, 163, 184, 0.6);
       color: var(--text-soft);
     }
+
+    .text-link {
+      color: #facc15;
+      background: transparent;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .text-link:hover { color: #fde68a; }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .resource-card {
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 10px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .resource-card strong { font-size: 12px; }
+    .resource-card span { color: var(--text-soft); font-size: 11px; }
+
+    .resource-pill {
+      align-self: flex-start;
+      border-radius: 999px;
+      border: 1px solid rgba(250, 204, 21, 0.55);
+      background: rgba(250, 204, 21, 0.1);
+      color: #fef9c3;
+      font-size: 10px;
+      padding: 2px 7px;
+    }
+
+    .assignment-detail-panel {
+      display: none;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, #0b1120 0, #020617 75%);
+      padding: 12px;
+      gap: 10px;
+    }
+
+    .assignment-detail-panel.active { display: flex; flex-direction: column; }
+
+    .assignment-detail-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .assignment-detail-header h3 { font-size: 14px; font-weight: 600; }
+    .assignment-detail-header span { color: var(--text-soft); font-size: 11px; }
+
+    .submitted-work {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.85);
+      padding: 10px;
+      color: var(--text-soft);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .submitted-work strong { color: var(--text); }
+
+    .feedback-box {
+      border-left: 3px solid #facc15;
+      padding: 8px 10px;
+      background: rgba(250, 204, 21, 0.08);
+      color: var(--text-soft);
+      font-size: 12px;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
-  <!-- LOGIN VIEW -->
   <div class="login-shell" id="login-shell">
     <div class="login-card">
       <div class="login-header">
         <div class="login-logo">U</div>
         <div class="login-title-group">
-          <span>Kennesaw State University</span>
-          <span>Student Portal</span>
+          <span>University Portal </span>
+          <span>Sign in to view your dashboard</span>
         </div>
       </div>
       <p class="login-subtitle">
-              </p>
+        
+      </p>
       <form class="login-form" id="login-form">
         <div>
-          <div class="field-label">Username</div>
+          <div class="field-label">Username </div>
           <input class="field-input" type="text" id="username" autocomplete="off" required />
         </div>
         <div>
-          <div class="field-label">Password</div>
+          <div class="field-label">Password </div>
           <input class="field-input" type="password" id="password" required />
         </div>
         <div class="login-row">
@@ -910,12 +831,12 @@
         <button type="submit" class="login-btn">Sign In</button>
       </form>
       <div class="login-error" id="login-error">
-        Invalid credentials. For this demo, use:<br>
+        Invalid credentials. For this , use:<br>
         <strong>Username:</strong> mross112@students.kennesaw.edu &nbsp;•&nbsp;
         <strong>Password:</strong> password123
       </div>
       <div class="hint">
-        
+         
       </div>
       <p class="login-note">
         
@@ -923,63 +844,41 @@
     </div>
   </div>
 
-  <!-- APP VIEW (dashboard) -->
   <div class="app-shell" id="app-shell">
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-logo">P</div>
         <div class="brand-text">
           <span>Portal</span>
-          <span>Term: Fall 2025</span>
+          <span>Term: Spring 2026</span>
         </div>
       </div>
 
       <div>
         <div class="sidebar-section-title">Navigation</div>
         <div class="nav-list">
-          <div class="nav-item active" data-target="dashboard">
-            <span>Dashboard</span>
-            <span class="nav-dot"></span>
-          </div>
-          <div class="nav-item" data-target="grades">
-            <span>Grades</span>
-          </div>
-          <div class="nav-item" data-target="coursework">
-            <span>Coursework</span>
-          </div>
-          <div class="nav-item" data-target="classmates">
-            <span>Classmates</span>
-          </div>
-          <div class="nav-item" data-target="profile">
-            <span>Profile</span>
-          </div>
+          <div class="nav-item active" data-target="dashboard"><span>Dashboard</span><span class="nav-dot"></span></div>
+          <div class="nav-item" data-target="grades"><span>Grades</span></div>
+          <div class="nav-item" data-target="coursework"><span>Coursework</span></div>
+          <div class="nav-item" data-target="classmates"><span>Classmates</span></div>
+          <div class="nav-item" data-target="profile"><span>Profile</span></div>
         </div>
       </div>
 
       <div>
         <div class="sidebar-section-title">Courses</div>
         <div class="nav-list">
-          <div class="nav-item">
-            <span>Accounting 101</span>
-            <span class="nav-dot"></span>
-          </div>
-          <div class="nav-item">
-            <span>Religion</span>
-            <span class="nav-dot"></span>
-          </div>
-          <div class="nav-item">
-            <span>Business Communications</span>
-            <span class="nav-dot"></span>
-          </div>
+          <div class="nav-item course-shortcut" data-course="macro"><span>Principles of Macroeconomics 2105</span><span class="nav-dot"></span></div>
+          <div class="nav-item course-shortcut" data-course="iscomm"><span>Information Sys &amp; Comm 2200</span><span class="nav-dot"></span></div>
+          <div class="nav-item course-shortcut" data-course="calculus"><span>Elementary Applied Calculus 1160</span><span class="nav-dot"></span></div>
+          <div class="nav-item course-shortcut" data-course="global"><span>Global Issues 2401</span><span class="nav-dot"></span></div>
+          <div class="nav-item course-shortcut" data-course="psych"><span>Intro to General Psychology 1101</span><span class="nav-dot"></span></div>
         </div>
       </div>
 
       <div class="sidebar-footer">
         <strong>Current Standing</strong>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          3.9 GPA • Excellent standing
-        </div>
+        <div class="pill"><span class="pill-dot"></span>3.7 GPA • Good standing</div>
         <span>You are maintaining strong academic performance this term.</span>
       </div>
     </aside>
@@ -1012,367 +911,174 @@
           </div>
           <div class="metrics">
             <div class="metric-card">
-              <span class="metric-label">Term GPA</span>
-              <span class="metric-value">3.9</span>
+              <span class="metric-label">Term GPA </span>
+              <span class="metric-value">3.7</span>
               <span class="metric-subtext">Strong term performance</span>
             </div>
             <div class="metric-card">
               <span class="metric-label">Enrolled Courses</span>
-              <span class="metric-value">3</span>
-              <span class="metric-subtext-muted">Accounting, Religion, Business Comm.</span>
+              <span class="metric-value">5</span>
+              <span class="metric-subtext-muted">15 credits in progress</span>
             </div>
             <div class="metric-card">
               <span class="metric-label">Assignments Submitted</span>
-              <span class="metric-value">18 / 18</span>
+              <span class="metric-value">25 / 25</span>
               <span class="metric-subtext">100% submitted on time</span>
             </div>
           </div>
         </div>
 
         <div class="views">
-          <!-- Dashboard view -->
           <div class="view active" id="dashboard">
             <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Current Courses</h2>
             <div class="courses-grid">
-              <article class="course-card" data-course="accounting">
+              <article class="course-card" data-course="macro">
                 <div class="course-highlight"></div>
-                <div class="course-badge">
-                  <span class="grade-dot"></span>
-                  Accounting 101 • Current grade: 96%
-                </div>
-                <div class="course-title">Accounting 101: Principles of Financial Accounting</div>
-                <div class="course-meta">
-                  <span>Instructor: <strong>Dr. Lee</strong></span>
-                  <span>Credits: <strong>3</strong></span>
-                </div>
-                <div class="course-footer">
-                  <div>
-                    Next Due: <strong>Chapter 5 Quiz</strong>
-                    <span style="color: var(--text-soft);"> • Due Sun</span>
-                  </div>
-                  <div class="pill-small">
-                    Attendance: <strong>100%</strong>
-                  </div>
-                </div>
+                <div class="course-badge"><span class="grade-dot"></span>ECON 2105 • Current grade: 95%</div>
+                <div class="course-title">Principles of Macroeconomics 2105</div>
+                <div class="course-meta"><span>Instructor: <strong>Murat DORAL</strong></span><span>Credits: <strong>3</strong></span></div>
+                <div class="course-footer"><div>Next Due: <strong>Policy Brief</strong><span style="color: var(--text-soft);"> • Due Apr 24</span></div><div class="pill-small">Status: <strong>On track</strong></div></div>
               </article>
 
-              <article class="course-card" data-course="religion">
-                <div class="course-highlight" style="background: radial-gradient(circle at top, rgba(250,204,21,0.22), transparent 55%);"></div>
-                <div class="course-badge">
-                  <span class="grade-dot"></span>
-                  Religion • Current grade: 93%
-                </div>
-                <div class="course-title">Intro to Religion: World Beliefs & Traditions</div>
-                <div class="course-meta">
-                  <span>Instructor: <strong>Prof. Kumar</strong></span>
-                  <span>Credits: <strong>3</strong></span>
-                </div>
-                <div class="course-footer">
-                  <div>
-                    Next Due: <strong>Reflection Journal 3</strong>
-                    <span style="color: var(--text-soft);"> • Due Tue</span>
-                  </div>
-                  <div class="pill-small">
-                    Participation: <strong>High</strong>
-                  </div>
-                </div>
+              <article class="course-card" data-course="iscomm">
+                <div class="course-highlight"></div>
+                <div class="course-badge"><span class="grade-dot"></span>ISCM 2200 • Current grade: 96%</div>
+                <div class="course-title">Information Sys &amp; Comm 2200</div>
+                <div class="course-meta"><span>Instructor: <strong>Prof. Ellis</strong></span><span>Credits: <strong>3</strong></span></div>
+                <div class="course-footer"><div>Next Due: <strong>Systems Diagram</strong><span style="color: var(--text-soft);"> • Due Apr 27</span></div><div class="pill-small">Lab: <strong>Current</strong></div></div>
               </article>
 
-              <article class="course-card" data-course="business">
-                <div class="course-highlight" style="background: radial-gradient(circle at top, rgba(250,204,21,0.2), transparent 55%);"></div>
-                <div class="course-badge">
-                  <span class="grade-dot"></span>
-                  Business Comm. • Current grade: 95%
-                </div>
-                <div class="course-title">Business Communications</div>
-                <div class="course-meta">
-                  <span>Instructor: <strong>Ms. Carter</strong></span>
-                  <span>Credits: <strong>3</strong></span>
-                </div>
-                <div class="course-footer">
-                  <div>
-                    Next Due: <strong>Presentation Outline</strong>
-                    <span style="color: var(--text-soft);"> • Due Fri</span>
-                  </div>
-                  <div class="pill-small">
-                    Group work: <strong>On track</strong>
-                  </div>
-                </div>
+              <article class="course-card" data-course="calculus">
+                <div class="course-highlight"></div>
+                <div class="course-badge"><span class="grade-dot"></span>MATH 1160 • Current grade: 86%</div>
+                <div class="course-title">Elementary Applied Calculus 1160</div>
+                <div class="course-meta"><span>Instructor: <strong>Larry Wang</strong></span><span>Credits: <strong>3</strong></span></div>
+                <div class="course-footer"><div>Next Due: <strong>Derivative Practice</strong><span style="color: var(--text-soft);"> • Due Apr 22</span></div><div class="pill-small">Quizzes: <strong>Needs review</strong></div></div>
+              </article>
+
+              <article class="course-card" data-course="global">
+                <div class="course-highlight"></div>
+                <div class="course-badge"><span class="grade-dot"></span>POLS 2401 • Current grade: 93%</div>
+                <div class="course-title">Global Issues 2401</div>
+                <div class="course-meta"><span>Instructor: <strong>Stephen McKelvey</strong></span><span>Credits: <strong>3</strong></span></div>
+                <div class="course-footer"><div>Next Due: <strong>Current Events Analysis</strong><span style="color: var(--text-soft);"> • Due Apr 23</span></div><div class="pill-small">Discussion: <strong>Active</strong></div></div>
+              </article>
+
+              <article class="course-card" data-course="psych">
+                <div class="course-highlight"></div>
+                <div class="course-badge"><span class="grade-dot"></span>PSYC 1101 • Current grade: 97%</div>
+                <div class="course-title">Intro to General Psychology 1101</div>
+                <div class="course-meta"><span>Instructor: <strong>Prof. Bennett</strong></span><span>Credits: <strong>3</strong></span></div>
+                <div class="course-footer"><div>Next Due: <strong>Memory Reflection</strong><span style="color: var(--text-soft);"> • Due Apr 26</span></div><div class="pill-small">Modules: <strong>Complete</strong></div></div>
               </article>
             </div>
 
-            <!-- Course detail feed -->
             <div class="course-detail-container">
               <div class="course-detail-header">
                 <h3 id="course-detail-title">Course Feed</h3>
                 <span id="course-detail-subtitle">Select a course above to view recent professor posts.</span>
               </div>
 
-              <div class="course-feed" data-course="accounting">
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Welcome to Accounting 101</div>
-                    <div class="course-post-meta">Posted by Dr. Lee • August 19, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Welcome to the course, everyone. Please review the syllabus and complete the introductory discussion
-                    post by the end of the week. Office hours are Tuesdays and Thursdays from 2–4 PM.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Chapter 2 Practice Problems</div>
-                    <div class="course-post-meta">Posted by Dr. Lee • September 3, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Practice problems for Chapter 2 have been posted under Content. They are not graded but will prepare
-                    you for Quiz 1. Aim to complete them by Sunday night.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Midterm Exam Details</div>
-                    <div class="course-post-meta">Posted by Dr. Lee • October 10, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    The midterm exam will be held on October 17, 2025. It will cover Chapters 1–5. A review guide has
-                    been uploaded and we will spend next class going over sample problems.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Midterm Feedback Posted</div>
-                    <div class="course-post-meta">Posted by Dr. Lee • October 20, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Midterm scores and feedback are now posted in the Grades area. Please review your results and reach
-                    out if you’d like to discuss any questions during office hours.
-                  </div>
-                </div>
+              <div class="course-feed" data-course="macro">
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Welcome to Principles of Macroeconomics</div><div class="course-post-meta">Posted by Murat DORAL • January 19, 2026</div></div><div class="course-post-body">Welcome to ECON 2105. Please review the syllabus, course calendar, and grading policy. Our first unit will focus on GDP, unemployment, and inflation.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">GDP and Economic Growth Module</div><div class="course-post-meta">Posted by Murat DORAL • February 2, 2026</div></div><div class="course-post-body">The GDP module is now open. Complete the short practice set before class so we can apply the concepts to recent economic data.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Midterm Review Guide Posted</div><div class="course-post-meta">Posted by Murat DORAL • March 7, 2026</div></div><div class="course-post-body">The midterm review guide has been posted under Content. Focus on aggregate demand, unemployment measures, inflation, and fiscal policy tools.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Policy Brief Instructions</div><div class="course-post-meta">Posted by Murat DORAL • April 3, 2026</div></div><div class="course-post-body">Your policy brief should analyze one macroeconomic issue and recommend a policy response. Upload a one-page outline by Friday.</div></div>
               </div>
 
-              <div class="course-feed" data-course="religion">
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Course Introduction & Syllabus</div>
-                    <div class="course-post-meta">Posted by Prof. Kumar • August 20, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Welcome to Intro to Religion. This semester we’ll explore major world traditions and their
-                    historical contexts. Please read the syllabus and complete the short “beliefs survey” by Friday.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Reading Schedule – Weeks 1–4</div>
-                    <div class="course-post-meta">Posted by Prof. Kumar • August 25, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    I’ve posted a detailed reading schedule for the first four weeks under Content. Please come to class
-                    having completed the readings so we can focus on discussion and case studies.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Reflection Journal Reminder</div>
-                    <div class="course-post-meta">Posted by Prof. Kumar • September 12, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Reflection Journal 2 is due Sunday at 11:59 PM. Be sure to connect your observations to at least one
-                    in-class discussion and one assigned reading.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Midterm Essay Prompt</div>
-                    <div class="course-post-meta">Posted by Prof. Kumar • October 8, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    The midterm essay prompt has been posted. Drafts are due October 18, 2025, with final submissions due
-                    October 24, 2025. We will workshop thesis statements in class next week.
-                  </div>
-                </div>
+              <div class="course-feed" data-course="iscomm">
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Course Start and Technology Expectations</div><div class="course-post-meta">Posted by Prof. Ellis • January 20, 2026</div></div><div class="course-post-body">Welcome to Information Systems & Communication. This course connects business communication practices with systems thinking and technology workflows.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Business Process Mapping Lab</div><div class="course-post-meta">Posted by Prof. Ellis • February 8, 2026</div></div><div class="course-post-body">The first lab is available. You will map a simple business process and identify the data inputs, outputs, and communication points.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Midterm Project Checkpoint</div><div class="course-post-meta">Posted by Prof. Ellis • March 9, 2026</div></div><div class="course-post-body">Midterm project checkpoints are due this week. Submit your draft systems diagram and a brief explanation of your communication strategy.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Systems Diagram Feedback</div><div class="course-post-meta">Posted by Prof. Ellis • March 27, 2026</div></div><div class="course-post-body">Feedback has been posted on your draft diagrams. Please use it to revise your final process model and presentation notes.</div></div>
               </div>
 
-              <div class="course-feed" data-course="business">
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Welcome to Business Communications</div>
-                    <div class="course-post-meta">Posted by Ms. Carter • August 19, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Welcome, everyone. This course will focus on professional writing, presentations, and team
-                    communication. Please introduce yourself in the “Course Introductions” discussion by Wednesday.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Email Etiquette Module Live</div>
-                    <div class="course-post-meta">Posted by Ms. Carter • September 2, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    The module on professional email etiquette is now available. Complete the sample email exercise and
-                    submit your revised message by Sunday night.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Group Presentation Guidelines</div>
-                    <div class="course-post-meta">Posted by Ms. Carter • October 1, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Presentation guidelines and rubrics have been posted. Please confirm your group topic in the
-                    “Project Topics” discussion by October 5, 2025.
-                  </div>
-                </div>
-                <div class="course-post">
-                  <div class="course-post-header">
-                    <div class="course-post-title">Midterm Presentation Check-In</div>
-                    <div class="course-post-meta">Posted by Ms. Carter • October 15, 2025</div>
-                  </div>
-                  <div class="course-post-body">
-                    Midterm presentations begin next week. You should now have your slide outline ready. Bring a draft to
-                    our next class for peer review and feedback.
-                  </div>
-                </div>
+              <div class="course-feed" data-course="calculus">
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Welcome to Applied Calculus</div><div class="course-post-meta">Posted by Larry Wang • January 19, 2026</div></div><div class="course-post-body">Welcome to MATH 1160. This semester emphasizes limits, derivatives, applications, and basic optimization problems.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Limits Practice Set</div><div class="course-post-meta">Posted by Larry Wang • February 5, 2026</div></div><div class="course-post-body">The limits practice set is now open. Please complete the odd-numbered problems before our next class meeting.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Derivative Rules Quiz</div><div class="course-post-meta">Posted by Larry Wang • February 29, 2026</div></div><div class="course-post-body">Quiz 3 will focus on product, quotient, and chain rules. A review video and worksheet are available in the Content area.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Midterm Results and Corrections</div><div class="course-post-meta">Posted by Larry Wang • March 21, 2026</div></div><div class="course-post-body">Midterm scores are posted. Optional corrections are due next week and can recover partial credit on selected problems.</div></div>
+              </div>
+
+              <div class="course-feed" data-course="global">
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Welcome to Global Issues</div><div class="course-post-meta">Posted by Stephen McKelvey • January 21, 2026</div></div><div class="course-post-body">Welcome to Global Issues 2401. Our course will examine globalization, conflict, migration, climate, development, and international institutions.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Current Events Discussion Format</div><div class="course-post-meta">Posted by Stephen McKelvey • February 4, 2026</div></div><div class="course-post-body">Each week, you will connect a current event to one of our course themes. Use credible sources and include a short policy or ethical implication.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Midterm Essay Topics</div><div class="course-post-meta">Posted by Stephen McKelvey • March 6, 2026</div></div><div class="course-post-body">Midterm essay topics are posted. Choose one topic related to global governance, migration, climate policy, or economic development.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Global Development Case Study</div><div class="course-post-meta">Posted by Stephen McKelvey • April 4, 2026</div></div><div class="course-post-body">The case study assignment is available. Select one country or region and analyze a development challenge using at least two course concepts.</div></div>
+              </div>
+
+              <div class="course-feed" data-course="psych">
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Welcome to General Psychology</div><div class="course-post-meta">Posted by Prof. Bennett • January 19, 2026</div></div><div class="course-post-body">Welcome to PSYC 1101. We will cover research methods, neuroscience, learning, memory, development, personality, and abnormal psychology.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Research Methods Module</div><div class="course-post-meta">Posted by Prof. Bennett • February 3, 2026</div></div><div class="course-post-body">This week’s module introduces experimental design, correlation, ethics, and common research limitations. Complete the quiz by Sunday.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Memory and Learning Unit</div><div class="course-post-meta">Posted by Prof. Bennett • March 13, 2026</div></div><div class="course-post-body">The memory and learning unit is now live. Pay close attention to encoding, storage, retrieval, conditioning, and reinforcement schedules.</div></div>
+                <div class="course-post"><div class="course-post-header"><div class="course-post-title">Midterm Feedback Available</div><div class="course-post-meta">Posted by Prof. Bennett • March 24, 2026</div></div><div class="course-post-body">Midterm feedback is available in Grades. Use the feedback to guide your study plan for the second half of the semester.</div></div>
+              </div>
+
+              <div class="resource-grid">
+                <div class="resource-card"><span class="resource-pill">Reference</span><strong><button class="text-link" type="button">Macroeconomic Indicators Reading Packet</button></strong><span> PDF covering GDP, unemployment, CPI, inflation, and fiscal policy vocabulary.</span></div>
+                <div class="resource-card"><span class="resource-pill">Video</span><strong><button class="text-link" type="button">Aggregate Demand & Supply Review</button></strong><span> 18-minute lecture video explaining AD/AS shifts and short-run equilibrium.</span></div>
+                <div class="resource-card"><span class="resource-pill">Practice</span><strong><button class="text-link" type="button">Fiscal Policy Scenario Exercises</button></strong><span> practice problems applying tax and spending changes to macroeconomic outcomes.</span></div>
+              </div>
+
+              <div class="resource-grid">
+                <div class="resource-card"><span class="resource-pill">Reference</span><strong><button class="text-link" type="button">Systems Analysis Field Guide</button></strong><span> guide to inputs, outputs, process mapping, stakeholders, and communication flows.</span></div>
+                <div class="resource-card"><span class="resource-pill">Video</span><strong><button class="text-link" type="button">Business Process Diagram Walkthrough</button></strong><span> video tutorial on mapping a business process from intake to final deliverable.</span></div>
+                <div class="resource-card"><span class="resource-pill">Template</span><strong><button class="text-link" type="button">Workflow Memo Template</button></strong><span> template for documenting a communication workflow and improvement recommendation.</span></div>
+              </div>
+
+              <div class="resource-grid">
+                <div class="resource-card"><span class="resource-pill">Reference</span><strong><button class="text-link" type="button">Limits & Derivatives Formula Sheet</button></strong><span> reference sheet covering limits, continuity, derivative rules, and applications.</span></div>
+                <div class="resource-card"><span class="resource-pill">Video</span><strong><button class="text-link" type="button">Derivative Rules Step-by-Step</button></strong><span> 22-minute lesson on product, quotient, and chain rule examples.</span></div>
+                <div class="resource-card"><span class="resource-pill">Practice</span><strong><button class="text-link" type="button">Applied Optimization Problem Set</button></strong><span> practice packet for rates of change, marginal analysis, and optimization word problems.</span></div>
+              </div>
+
+              <div class="resource-grid">
+                <div class="resource-card"><span class="resource-pill">Reference</span><strong><button class="text-link" type="button">Global Governance Reading Set</button></strong><span> reading packet on international institutions, climate policy, migration, and development.</span></div>
+                <div class="resource-card"><span class="resource-pill">Video</span><strong><button class="text-link" type="button">Globalization and Interdependence Lecture</button></strong><span> lecture video connecting trade, security, climate, and human rights issues.</span></div>
+                <div class="resource-card"><span class="resource-pill">Research</span><strong><button class="text-link" type="button">Current Events Source Checklist</button></strong><span> checklist for evaluating sources and connecting news to course themes.</span></div>
+              </div>
+
+              <div class="resource-grid">
+                <div class="resource-card"><span class="resource-pill">Reference</span><strong><button class="text-link" type="button">Psychology Concepts Study Guide</button></strong><span> guide covering research methods, memory, learning, neuroscience, and development.</span></div>
+                <div class="resource-card"><span class="resource-pill">Video</span><strong><button class="text-link" type="button">Memory Encoding & Retrieval Review</button></strong><span> 15-minute video explaining encoding, storage, retrieval, and forgetting.</span></div>
+                <div class="resource-card"><span class="resource-pill">Practice</span><strong><button class="text-link" type="button">Research Methods Practice Quiz</button></strong><span> practice quiz on variables, ethics, correlation, experiments, and sampling.</span></div>
               </div>
             </div>
           </div>
 
-          <!-- Grades view -->
           <div class="view" id="grades">
             <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Grades • All Courses </h2>
             <div class="grades-layout">
               <div class="table-card">
-                <div class="table-header">
-                  <strong>Course Grades</strong>
-                  <span>Overview of current grade components</span>
-                </div>
+                <div class="table-header"><strong>Course Grades</strong><span>Overview of current grade components</span></div>
                 <div class="grades-table-wrapper">
                   <table>
-                    <thead>
-                      <tr>
-                        <th>Course</th>
-                        <th>Category</th>
-                        <th>Grade</th>
-                        <th>Completed</th>
-                        <th>Status</th>
-                      </tr>
-                    </thead>
+                    <thead><tr><th>Course</th><th>Category</th><th>Grade</th><th>Completed</th><th>Status</th></tr></thead>
                     <tbody>
-                      <tr>
-                        <td>Accounting 101</td>
-                        <td>Exams & Quizzes</td>
-                        <td>
-                          <span class="grade-pill">
-                            <span class="letter">A</span>
-                            <span>• 96%</span>
-                          </span>
-                        </td>
-                        <td>5 / 5</td>
-                        <td>On track</td>
-                      </tr>
-                      <tr>
-                        <td>Accounting 101</td>
-                        <td>Homework & Practice</td>
-                        <td>
-                          <span class="grade-pill">
-                            <span class="letter">A</span>
-                            <span>• 97%</span>
-                          </span>
-                        </td>
-                        <td>7 / 7</td>
-                        <td>On track</td>
-                      </tr>
-                      <tr>
-                        <td>Religion</td>
-                        <td>Essays & Reflections</td>
-                        <td>
-                          <span class="grade-pill">
-                            <span class="letter">A-</span>
-                            <span>• 93%</span>
-                          </span>
-                        </td>
-                        <td>4 / 4</td>
-                        <td>On track</td>
-                      </tr>
-                      <tr>
-                        <td>Religion</td>
-                        <td>Participation</td>
-                        <td>
-                          <span class="grade-pill">
-                            <span class="letter">A</span>
-                            <span>• 98%</span>
-                          </span>
-                        </td>
-                        <td>Fully met</td>
-                        <td>Strong</td>
-                      </tr>
-                      <tr>
-                        <td>Business Communications</td>
-                        <td>Written Assignments</td>
-                        <td>
-                          <span class="grade-pill">
-                            <span class="letter">A</span>
-                            <span>• 95%</span>
-                          </span>
-                        </td>
-                        <td>3 / 3</td>
-                        <td>On track</td>
-                      </tr>
-                      <tr>
-                        <td>Business Communications</td>
-                        <td>Presentations</td>
-                        <td>
-                          <span class="grade-pill">
-                            <span class="letter">A</span>
-                            <span>• 96%</span>
-                          </span>
-                        </td>
-                        <td>2 / 2</td>
-                        <td>On track</td>
-                      </tr>
+                      <tr><td>Principles of Macroeconomics 2105</td><td>Quizzes & Exams</td><td><span class="grade-pill"><span class="letter">A</span><span>• 95%</span></span></td><td>5 / 5</td><td>On track</td></tr>
+                      <tr><td>Information Sys &amp; Comm 2200</td><td>Labs & Projects</td><td><span class="grade-pill"><span class="letter">A</span><span>• 96%</span></span></td><td>6 / 6</td><td>On track</td></tr>
+                      <tr><td>Elementary Applied Calculus 1160</td><td>Homework & Quizzes</td><td><span class="grade-pill"><span class="letter">B</span><span>• 86%</span></span></td><td>7 / 7</td><td>Needs review</td></tr>
+                      <tr><td>Global Issues 2401</td><td>Essays & Discussions</td><td><span class="grade-pill"><span class="letter">A-</span><span>• 93%</span></span></td><td>4 / 4</td><td>On track</td></tr>
+                      <tr><td>Intro to General Psychology 1101</td><td>Modules & Exams</td><td><span class="grade-pill"><span class="letter">A</span><span>• 97%</span></span></td><td>6 / 6</td><td>Strong</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
 
               <div class="detail-card">
-                <div class="table-header">
-                  <strong>Term Summary</strong>
-                  <span> Academic Snapshot</span>
-                </div>
+                <div class="table-header"><strong>Term Summary</strong><span> academic snapshot</span></div>
                 <div class="detail-list">
-                  <div class="detail-item">
-                    <span class="label">GPA (Current Term)</span>
-                    <span class="value">3.9</span>
-                  </div>
-                  <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                  </div>
-                  <div class="detail-item">
-                    <span class="label">Total Credits In Progress</span>
-                    <span class="value">9 credits</span>
-                  </div>
-                  <div class="detail-item">
-                    <span class="label">Assignments Completed</span>
-                    <span class="value">18 / 18 (100%)</span>
-                  </div>
-                  <div class="detail-item">
-                    <span class="label">Late / Missing Work</span>
-                    <span class="value" style="color: var(--success);">0 items</span>
-                  </div>
+                  <div class="detail-item"><span class="label">GPA (Current Term, )</span><span class="value">3.7</span></div>
+                  <div class="progress-bar"><div class="progress-fill"></div></div>
+                  <div class="detail-item"><span class="label">Total Credits In Progress</span><span class="value">15 credits</span></div>
+                  <div class="detail-item"><span class="label">Assignments Completed</span><span class="value">25 / 25 (100%)</span></div>
+                  <div class="detail-item"><span class="label">Late / Missing Work</span><span class="value" style="color: var(--success);">0 items</span></div>
                 </div>
-                <div class="tags-row">
-                  <span class="tag">Consistent performance</span>
-                  <span class="tag">Strong engagement</span>
-                  <span class="tag">All data </span>
-                </div>
+                <div class="tags-row"><span class="tag">Consistent performance</span><span class="tag">Strong engagement</span><span class="tag">All data </span></div>
               </div>
             </div>
           </div>
 
-          <!-- Coursework view (completed assignments + midterms) -->
           <div class="view" id="coursework">
             <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Coursework • Completed Work & Midterms </h2>
             <div class="subtabs">
@@ -1382,109 +1088,52 @@
 
             <div class="coursework-section active" data-section="assignments">
               <div class="table-card">
-                <div class="table-header">
-                  <strong>Completed Assignments</strong>
-                  <span>Recent submissions with due dates</span>
-                </div>
+                <div class="table-header"><strong>Completed Assignments</strong><span>Recent submissions with due dates</span></div>
                 <div class="grades-table-wrapper">
                   <table>
-                    <thead>
-                      <tr>
-                        <th>Course</th>
-                        <th>Assignment</th>
-                        <th>Due Date</th>
-                        <th>Submitted</th>
-                        <th>Score</th>
-                      </tr>
-                    </thead>
+                    <thead><tr><th>Course</th><th>Assignment</th><th>Due Date</th><th>Submitted</th><th>Score</th></tr></thead>
                     <tbody>
-                      <tr>
-                        <td>Accounting 101</td>
-                        <td>Homework Set 1</td>
-                        <td>August 28, 2025</td>
-                        <td>On time</td>
-                        <td>97%</td>
-                      </tr>
-                      <tr>
-                        <td>Accounting 101</td>
-                        <td>Quiz 1</td>
-                        <td>September 4, 2025</td>
-                        <td>On time</td>
-                        <td>94%</td>
-                      </tr>
-                      <tr>
-                        <td>Religion</td>
-                        <td>Reflection Journal 1</td>
-                        <td>September 1, 2025</td>
-                        <td>On time</td>
-                        <td>92%</td>
-                      </tr>
-                      <tr>
-                        <td>Religion</td>
-                        <td>Short Essay: Ritual & Meaning</td>
-                        <td>September 15, 2025</td>
-                        <td>On time</td>
-                        <td>95%</td>
-                      </tr>
-                      <tr>
-                        <td>Business Communications</td>
-                        <td>Professional Email Draft</td>
-                        <td>September 10, 2025</td>
-                        <td>On time</td>
-                        <td>96%</td>
-                      </tr>
-                      <tr>
-                        <td>Business Communications</td>
-                        <td>Memo: Internal Update</td>
-                        <td>September 22, 2025</td>
-                        <td>On time</td>
-                        <td>94%</td>
-                      </tr>
+                      <tr><td>Principles of Macroeconomics 2105</td><td><button class="text-link assignment-link" data-assignment="macro-gdp">GDP Data Worksheet</button></td><td>February 5, 2026</td><td>On time</td><td>96%</td></tr>
+                      <tr><td>Principles of Macroeconomics 2105</td><td><button class="text-link assignment-link" data-assignment="macro-inflation">Inflation Discussion</button></td><td>February 19, 2026</td><td>On time</td><td>94%</td></tr>
+                      <tr><td>Information Sys &amp; Comm 2200</td><td><button class="text-link assignment-link" data-assignment="iscomm-process">Process Mapping Lab</button></td><td>February 12, 2026</td><td>On time</td><td>97%</td></tr>
+                      <tr><td>Information Sys &amp; Comm 2200</td><td><button class="text-link assignment-link" data-assignment="iscomm-memo">Communication Workflow Memo</button></td><td>February 26, 2026</td><td>On time</td><td>95%</td></tr>
+                      <tr><td>Elementary Applied Calculus 1160</td><td><button class="text-link assignment-link" data-assignment="calc-limits">Limits Practice Set</button></td><td>February 8, 2026</td><td>On time</td><td>88%</td></tr>
+                      <tr><td>Elementary Applied Calculus 1160</td><td><button class="text-link assignment-link" data-assignment="calc-derivatives">Derivative Rules Quiz</button></td><td>March 2, 2026</td><td>On time</td><td>84%</td></tr>
+                      <tr><td>Global Issues 2401</td><td><button class="text-link assignment-link" data-assignment="global-current-events">Current Events Analysis 1</button></td><td>February 11, 2026</td><td>On time</td><td>92%</td></tr>
+                      <tr><td>Global Issues 2401</td><td><button class="text-link assignment-link" data-assignment="global-governance">Global Governance Reflection</button></td><td>February 25, 2026</td><td>On time</td><td>94%</td></tr>
+                      <tr><td>Intro to General Psychology 1101</td><td><button class="text-link assignment-link" data-assignment="psych-methods">Research Methods Quiz</button></td><td>February 7, 2026</td><td>On time</td><td>98%</td></tr>
+                      <tr><td>Intro to General Psychology 1101</td><td><button class="text-link assignment-link" data-assignment="psych-learning">Learning Theory Reflection</button></td><td>March 5, 2026</td><td>On time</td><td>96%</td></tr>
                     </tbody>
                   </table>
                 </div>
+              </div>
+            </div>
+
+            <div class="assignment-detail-panel" id="assignment-detail-panel">
+              <div class="assignment-detail-header">
+                <h3 id="assignment-detail-title">Completed Assignment</h3>
+                <span id="assignment-detail-meta">Select an assignment above to view the  submitted work.</span>
+              </div>
+              <div class="submitted-work" id="assignment-detail-body">
+                Click any assignment title in the table to open a  completed submission, including a brief response and instructor feedback.
+              </div>
+              <div class="feedback-box" id="assignment-detail-feedback">
+                Assignment feedback will appear here after a completed assignment is selected.
               </div>
             </div>
 
             <div class="coursework-section" data-section="midterms">
               <div class="table-card">
-                <div class="table-header">
-                  <strong>Midterm Overview</strong>
-                  <span> midterm milestones</span>
-                </div>
+                <div class="table-header"><strong>Midterm Overview</strong><span> midterm milestones</span></div>
                 <div class="grades-table-wrapper">
                   <table>
-                    <thead>
-                      <tr>
-                        <th>Course</th>
-                        <th>Midterm Type</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Score</th>
-                      </tr>
-                    </thead>
+                    <thead><tr><th>Course</th><th>Midterm Type</th><th>Date</th><th>Status</th><th>Score</th></tr></thead>
                     <tbody>
-                      <tr>
-                        <td>Accounting 101</td>
-                        <td>Written Exam</td>
-                        <td>October 17, 2025</td>
-                        <td>Completed</td>
-                        <td>95%</td>
-                      </tr>
-                      <tr>
-                        <td>Religion</td>
-                        <td>Midterm Essay</td>
-                        <td>October 24, 2025</td>
-                        <td>Completed</td>
-                        <td>93%</td>
-                      </tr>
-                      <tr>
-                        <td>Business Communications</td>
-                        <td>Midterm Presentation</td>
-                        <td>October 21, 2025</td>
-                        <td>Completed</td>
-                        <td>96%</td>
-                      </tr>
+                      <tr><td>Principles of Macroeconomics 2105</td><td>Written Exam</td><td>March 16, 2026</td><td>Completed</td><td>95%</td></tr>
+                      <tr><td>Information Sys &amp; Comm 2200</td><td>Systems Project Checkpoint</td><td>March 14, 2026</td><td>Completed</td><td>96%</td></tr>
+                      <tr><td>Elementary Applied Calculus 1160</td><td>Problem-Solving Exam</td><td>March 17, 2026</td><td>Completed</td><td>86%</td></tr>
+                      <tr><td>Global Issues 2401</td><td>Analytical Essay</td><td>March 21, 2026</td><td>Completed</td><td>93%</td></tr>
+                      <tr><td>Intro to General Psychology 1101</td><td>Unit Exam</td><td>March 18, 2026</td><td>Completed</td><td>97%</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -1492,72 +1141,134 @@
             </div>
           </div>
 
-          <!-- Classmates view -->
           <div class="view" id="classmates">
-            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Classmates </h2>
-            <p style="font-size:12px; color: var(--text-soft); margin-bottom:8px;">
-              Classmates enrolled in your current courses.
-            </p>
-            <div class="classmates-grid">
-              <div class="classmate-card">
-                <div class="classmate-name">Jordan Mitchell</div>
-                <div class="classmate-meta">Accounting 101, Business Communications</div>
-                <div class="classmate-meta">Major: Finance • Year: Sophomore</div>
-                <div class="classmate-tags">
-                  <span class="classmate-tag">Study group regular</span>
-                  <span class="classmate-tag">Prefers morning classes</span>
-                </div>
-              </div>
+            <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Classmates by Course </h2>
+            <p style="font-size:12px; color: var(--text-soft); margin-bottom:8px;">Each course below has a separate roster of 15  classmates. Names and details are fictional.</p>
 
-              <div class="classmate-card">
-                <div class="classmate-name">Avery Collins</div>
-                <div class="classmate-meta">Accounting 101, Religion</div>
-                <div class="classmate-meta">Major: Accounting • Year: Junior</div>
-                <div class="classmate-tags">
-                  <span class="classmate-tag">Shared notes</span>
-                  <span class="classmate-tag">Good at practice problems</span>
-                </div>
+            <div class="course-detail-container">
+              <div class="course-detail-header">
+                <h3>Principles of Macroeconomics 2105</h3>
+                <span>15  classmates</span>
               </div>
-
-              <div class="classmate-card">
-                <div class="classmate-name">Riley Thompson</div>
-                <div class="classmate-meta">Religion, Business Communications</div>
-                <div class="classmate-meta">Major: Marketing • Year: Sophomore</div>
-                <div class="classmate-tags">
-                  <span class="classmate-tag">Group presentation partner</span>
-                  <span class="classmate-tag">Strong presenter</span>
-                </div>
+              <div class="classmates-grid">
+                <div class="classmate-card"><div class="classmate-name">Jordan Mitchell</div><div class="classmate-meta">Major: Economics • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Policy discussion</span><span class="classmate-tag">Study group</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Alyssa Harper</div><div class="classmate-meta">Major: Finance • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">GDP data</span><span class="classmate-tag">Quiz prep</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Marcus Ellison</div><div class="classmate-meta">Major: Business Admin • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Fiscal policy</span><span class="classmate-tag">Notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Naomi Brooks</div><div class="classmate-meta">Major: International Affairs • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Inflation topics</span><span class="classmate-tag">Research</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Dylan Foster</div><div class="classmate-meta">Major: Marketing • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Graph review</span><span class="classmate-tag">Participation</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Sophia Reeves</div><div class="classmate-meta">Major: Accounting • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Problem sets</span><span class="classmate-tag">Peer review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Ethan Park</div><div class="classmate-meta">Major: Economics • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Exam review</span><span class="classmate-tag">Study lead</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Maya Sanders</div><div class="classmate-meta">Major: Political Science • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Policy brief</span><span class="classmate-tag">Discussion</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Connor Hayes</div><div class="classmate-meta">Major: Management • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Current events</span><span class="classmate-tag">Office hours</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Isabella Grant</div><div class="classmate-meta">Major: Finance • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Demand curves</span><span class="classmate-tag">Practice quiz</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Noah Jennings</div><div class="classmate-meta">Major: Sport Management • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Group work</span><span class="classmate-tag">Presentations</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Lena Morales</div><div class="classmate-meta">Major: Economics • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Data charts</span><span class="classmate-tag">Review guide</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Caleb Turner</div><div class="classmate-meta">Major: Business Admin • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Fiscal policy</span><span class="classmate-tag">Exam prep</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Priya Shah</div><div class="classmate-meta">Major: International Business • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Trade topics</span><span class="classmate-tag">Essay help</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Owen Russell</div><div class="classmate-meta">Major: Entrepreneurship • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Case examples</span><span class="classmate-tag">Participation</span></div></div>
               </div>
+            </div>
 
-              <div class="classmate-card">
-                <div class="classmate-name">Casey Nguyen</div>
-                <div class="classmate-meta">Accounting 101</div>
-                <div class="classmate-meta">Major: Management • Year: Freshman</div>
-                <div class="classmate-tags">
-                  <span class="classmate-tag">Often visits office hours</span>
-                  <span class="classmate-tag">Organized notes</span>
-                </div>
+            <div class="course-detail-container">
+              <div class="course-detail-header">
+                <h3>Information Sys &amp; Comm 2200</h3>
+                <span>15  classmates</span>
               </div>
+              <div class="classmates-grid">
+                <div class="classmate-card"><div class="classmate-name">Avery Collins</div><div class="classmate-meta">Major: Information Systems • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Lab partner</span><span class="classmate-tag">Systems diagrams</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Grace Holloway</div><div class="classmate-meta">Major: Cybersecurity • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Process mapping</span><span class="classmate-tag">Team lead</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Miles Anderson</div><div class="classmate-meta">Major: Information Systems • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Workflow design</span><span class="classmate-tag">Lab notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Tessa Coleman</div><div class="classmate-meta">Major: Business Analytics • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Data flow</span><span class="classmate-tag">Project draft</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Julian Price</div><div class="classmate-meta">Major: Management • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Memo writing</span><span class="classmate-tag">Peer feedback</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Kendra Scott</div><div class="classmate-meta">Major: Marketing • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Presentation</span><span class="classmate-tag">Communication plan</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Brandon Lee</div><div class="classmate-meta">Major: Computer Science • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Tech setup</span><span class="classmate-tag">Diagram review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Nina Patel</div><div class="classmate-meta">Major: Information Systems • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Lab prep</span><span class="classmate-tag">Discussion</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Eli Watkins</div><div class="classmate-meta">Major: Business Admin • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Project scope</span><span class="classmate-tag">Workflow memo</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Camila Ortiz</div><div class="classmate-meta">Major: Professional Sales • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Client scenario</span><span class="classmate-tag">Presentation</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Henry Walsh</div><div class="classmate-meta">Major: Supply Chain • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Process flow</span><span class="classmate-tag">Lab report</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Leah Simmons</div><div class="classmate-meta">Major: Information Security • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Systems risk</span><span class="classmate-tag">Documentation</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Dominic Reed</div><div class="classmate-meta">Major: Management • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Class discussion</span><span class="classmate-tag">Use cases</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Sienna Murphy</div><div class="classmate-meta">Major: Business Analytics • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Data model</span><span class="classmate-tag">Draft editor</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Victor Ramirez</div><div class="classmate-meta">Major: Information Systems • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Project mentor</span><span class="classmate-tag">Lab support</span></div></div>
+              </div>
+            </div>
 
-              <div class="classmate-card">
-                <div class="classmate-name">Taylor Brooks</div>
-                <div class="classmate-meta">Business Communications</div>
-                <div class="classmate-meta">Major: Business Admin • Year: Senior</div>
-                <div class="classmate-tags">
-                  <span class="classmate-tag">Experienced in presentations</span>
-                  <span class="classmate-tag">Peer feedback leader</span>
-                </div>
+            <div class="course-detail-container">
+              <div class="course-detail-header">
+                <h3>Elementary Applied Calculus 1160</h3>
+                <span>15  classmates</span>
+              </div>
+              <div class="classmates-grid">
+                <div class="classmate-card"><div class="classmate-name">Riley Thompson</div><div class="classmate-meta">Major: Biology • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Derivative drills</span><span class="classmate-tag">Study group</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Casey Nguyen</div><div class="classmate-meta">Major: Finance • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Problem sets</span><span class="classmate-tag">Office hours</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Emma Caldwell</div><div class="classmate-meta">Major: Chemistry • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Limits practice</span><span class="classmate-tag">Quiz prep</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Landon Pierce</div><div class="classmate-meta">Major: Engineering Tech • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Application problems</span><span class="classmate-tag">Graphing</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Zoe Kim</div><div class="classmate-meta">Major: Nursing Interest • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Formula sheet</span><span class="classmate-tag">Review notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Trevor Manning</div><div class="classmate-meta">Major: Construction Management • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Optimization</span><span class="classmate-tag">Homework group</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Hannah Rivera</div><div class="classmate-meta">Major: Psychology • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Practice quiz</span><span class="classmate-tag">Note sharing</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Wyatt Cooper</div><div class="classmate-meta">Major: Exercise Science • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Chain rule</span><span class="classmate-tag">Review sessions</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Mila Dawson</div><div class="classmate-meta">Major: Architecture • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Graph sketching</span><span class="classmate-tag">Practice set</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Isaac Chen</div><div class="classmate-meta">Major: Computer Science • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Step-by-step</span><span class="classmate-tag">Problem solving</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Peyton Barnes</div><div class="classmate-meta">Major: Biology • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Exam prep</span><span class="classmate-tag">Study partner</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Sofia Alvarez</div><div class="classmate-meta">Major: Public Health • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Worked examples</span><span class="classmate-tag">Homework help</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Gavin Stone</div><div class="classmate-meta">Major: Accounting • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Rates of change</span><span class="classmate-tag">Worksheet review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Natalie Young</div><div class="classmate-meta">Major: Data Science • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Graph tools</span><span class="classmate-tag">Quiz review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Omar Bennett</div><div class="classmate-meta">Major: Economics • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Application examples</span><span class="classmate-tag">Study guide</span></div></div>
+              </div>
+            </div>
+
+            <div class="course-detail-container">
+              <div class="course-detail-header">
+                <h3>Global Issues 2401</h3>
+                <span>15  classmates</span>
+              </div>
+              <div class="classmates-grid">
+                <div class="classmate-card"><div class="classmate-name">Taylor Brooks</div><div class="classmate-meta">Major: Political Science • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Presentation group</span><span class="classmate-tag">Research notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Amara Wilson</div><div class="classmate-meta">Major: International Affairs • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Global policy</span><span class="classmate-tag">Essay draft</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Blake Harrison</div><div class="classmate-meta">Major: History • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Case studies</span><span class="classmate-tag">Discussion</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Serena Long</div><div class="classmate-meta">Major: Sociology • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Migration topic</span><span class="classmate-tag">Source review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Mateo Cruz</div><div class="classmate-meta">Major: Geography • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Climate policy</span><span class="classmate-tag">Map data</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Kaitlyn Ross</div><div class="classmate-meta">Major: Criminal Justice • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Conflict studies</span><span class="classmate-tag">Debate prep</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Jasper Coleman</div><div class="classmate-meta">Major: Communications • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Media analysis</span><span class="classmate-tag">Current events</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Elena Vasquez</div><div class="classmate-meta">Major: International Business • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Trade policy</span><span class="classmate-tag">Research lead</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Mason Bryant</div><div class="classmate-meta">Major: Economics • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Development data</span><span class="classmate-tag">Class debate</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Olivia Hart</div><div class="classmate-meta">Major: Public Policy • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Governance</span><span class="classmate-tag">Essay outline</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Finn Wallace</div><div class="classmate-meta">Major: Anthropology • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Culture topics</span><span class="classmate-tag">Seminar notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Jada Freeman</div><div class="classmate-meta">Major: Environmental Studies • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Climate justice</span><span class="classmate-tag">Presentation</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Cole Peterson</div><div class="classmate-meta">Major: Philosophy • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Ethics</span><span class="classmate-tag">Discussion post</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Mei Tanaka</div><div class="classmate-meta">Major: Asian Studies • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Regional analysis</span><span class="classmate-tag">Sources</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Quinn Murphy</div><div class="classmate-meta">Major: Journalism • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">News analysis</span><span class="classmate-tag">Peer review</span></div></div>
+              </div>
+            </div>
+
+            <div class="course-detail-container">
+              <div class="course-detail-header">
+                <h3>Intro to General Psychology 1101</h3>
+                <span>15  classmates</span>
+              </div>
+              <div class="classmates-grid">
+                <div class="classmate-card"><div class="classmate-name">Morgan Fields</div><div class="classmate-meta">Major: Psychology • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Memory unit</span><span class="classmate-tag">Quiz prep</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Chloe Evans</div><div class="classmate-meta">Major: Nursing Interest • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Neuroscience</span><span class="classmate-tag">Flashcards</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Darius King</div><div class="classmate-meta">Major: Sociology • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Research methods</span><span class="classmate-tag">Study guide</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Kayla Monroe</div><div class="classmate-meta">Major: Human Services • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Development</span><span class="classmate-tag">Discussion</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Logan Fisher</div><div class="classmate-meta">Major: Exercise Science • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Behaviorism</span><span class="classmate-tag">Examples</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Brianna Reed</div><div class="classmate-meta">Major: Criminal Justice • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Personality</span><span class="classmate-tag">Exam review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Samuel Price</div><div class="classmate-meta">Major: Biology • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Brain structures</span><span class="classmate-tag">Notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Ella Morris</div><div class="classmate-meta">Major: Education • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Learning theory</span><span class="classmate-tag">Group review</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Jason Patel</div><div class="classmate-meta">Major: Computer Science • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Cognition</span><span class="classmate-tag">Quiz practice</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Arianna Hughes</div><div class="classmate-meta">Major: Public Health • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Stress unit</span><span class="classmate-tag">Study group</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Micah Edwards</div><div class="classmate-meta">Major: Communications • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Social psych</span><span class="classmate-tag">Discussion</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Selena Ward</div><div class="classmate-meta">Major: Psychology • Year: Sophomore</div><div class="classmate-tags"><span class="classmate-tag">Research ethics</span><span class="classmate-tag">Peer notes</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Tyler Bennett</div><div class="classmate-meta">Major: Management • Year: Senior</div><div class="classmate-tags"><span class="classmate-tag">Motivation</span><span class="classmate-tag">Case examples</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Ivy Carter</div><div class="classmate-meta">Major: Biology • Year: Freshman</div><div class="classmate-tags"><span class="classmate-tag">Neurons</span><span class="classmate-tag">Flashcards</span></div></div>
+                <div class="classmate-card"><div class="classmate-name">Andre Simmons</div><div class="classmate-meta">Major: Sport Management • Year: Junior</div><div class="classmate-tags"><span class="classmate-tag">Performance psych</span><span class="classmate-tag">Review notes</span></div></div>
               </div>
             </div>
           </div>
 
-          <!-- Profile placeholder -->
           <div class="view" id="profile">
             <h2 style="font-size:14px; font-weight:600; margin-bottom:4px;">Profile • Michael Ross </h2>
-            <p style="font-size:12px; color: var(--text-soft);">
-              This profile section is a placeholder. You can expand it with additional details such as major,
-              contact information, advising notes, and goals to match your use case.
-            </p>
+            <p style="font-size:12px; color: var(--text-soft);">This profile section is a placeholder. You can expand it with additional details such as major, contact information, advising notes, and goals to match your use case.</p>
           </div>
         </div>
       </section>
@@ -1565,7 +1276,6 @@
   </div>
 
   <script>
-    // Demo login logic
     const loginForm = document.getElementById("login-form");
     const loginShell = document.getElementById("login-shell");
     const appShell = document.getElementById("app-shell");
@@ -1586,7 +1296,6 @@
       }
     });
 
-    // Tabs and sidebar view switching
     const contentTabs = document.querySelectorAll(".content-tab");
     const views = document.querySelectorAll(".view");
     const sideNavItems = document.querySelectorAll(".sidebar .nav-item[data-target]");
@@ -1597,22 +1306,9 @@
       sideNavItems.forEach(i => i.classList.toggle("active", i.dataset.target === targetId));
     }
 
-    contentTabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        activateView(tab.dataset.target);
-      });
-    });
+    contentTabs.forEach(tab => tab.addEventListener("click", () => activateView(tab.dataset.target)));
+    sideNavItems.forEach(item => item.addEventListener("click", () => activateView(item.dataset.target)));
 
-    sideNavItems.forEach(item => {
-      item.addEventListener("click", () => {
-        const target = item.dataset.target;
-        if (target) {
-          activateView(target);
-        }
-      });
-    });
-
-    // Coursework subtabs
     const subtabButtons = document.querySelectorAll(".subtab-btn");
     const courseworkSections = document.querySelectorAll(".coursework-section");
 
@@ -1624,35 +1320,111 @@
       });
     });
 
-    // Course feed interactions
     const courseCards = document.querySelectorAll(".course-card");
+    const courseShortcuts = document.querySelectorAll(".course-shortcut");
     const courseFeeds = document.querySelectorAll(".course-feed");
     const courseDetailTitle = document.getElementById("course-detail-title");
     const courseDetailSubtitle = document.getElementById("course-detail-subtitle");
 
-    function showCourseFeed(courseKey) {
-      courseFeeds.forEach(feed => {
-        feed.classList.toggle("active", feed.dataset.course === courseKey);
-      });
+    const courseTitles = {
+      macro: ["Principles of Macroeconomics 2105", "Announcements, reference materials, and videos from Murat DORAL ."],
+      iscomm: ["Information Sys & Comm 2200", "Announcements, reference materials, and videos from Prof. Ellis ."],
+      calculus: ["Elementary Applied Calculus 1160", "Announcements, reference materials, and videos from Larry Wang ."],
+      global: ["Global Issues 2401", "Announcements, reference materials, and videos from Stephen McKelvey ."],
+      psych: ["Intro to General Psychology 1101", "Announcements, reference materials, and videos from Prof. Bennett ."]
+    };
 
-      if (courseKey === "accounting") {
-        courseDetailTitle.textContent = "Accounting 101 – Course Feed";
-        courseDetailSubtitle.textContent = "Announcements and updates from Dr. Lee .";
-      } else if (courseKey === "religion") {
-        courseDetailTitle.textContent = "Religion – Course Feed";
-        courseDetailSubtitle.textContent = "Announcements and updates from Prof. Kumar .";
-      } else if (courseKey === "business") {
-        courseDetailTitle.textContent = "Business Communications – Course Feed";
-        courseDetailSubtitle.textContent = "Announcements and updates from Ms. Carter .";
+    const assignmentDetails = {
+      "macro-gdp": {
+        title: "GDP Data Worksheet",
+        meta: "Principles of Macroeconomics 2105 • Submitted February 5, 2026 • Score: 96%",
+        body: "<strong>Submitted response summary:</strong><br>Michael calculated nominal GDP and real GDP for a three-year sample economy, identified the base-year adjustment, and explained why real GDP is a better measure for comparing output over time. The final paragraph noted that GDP growth can rise even when household well-being is unevenly distributed.",
+        feedback: "Instructor feedback: Strong calculations and clear explanation of real versus nominal GDP. Add one more limitation of GDP for full analytical depth."
+      },
+      "macro-inflation": {
+        title: "Inflation Discussion",
+        meta: "Principles of Macroeconomics 2105 • Submitted February 19, 2026 • Score: 94%",
+        body: "<strong>Submitted response summary:</strong><br>Michael explained demand-pull and cost-push inflation using examples from consumer demand and supply chain disruptions. He connected CPI changes to purchasing power and described how inflation affects borrowers, savers, and wage earners differently.",
+        feedback: "Instructor feedback: Good use of examples and vocabulary. Include a more direct connection to monetary policy next time."
+      },
+      "iscomm-process": {
+        title: "Process Mapping Lab",
+        meta: "Information Sys & Comm 2200 • Submitted February 12, 2026 • Score: 97%",
+        body: "<strong>Submitted response summary:</strong><br>Michael mapped a  customer support workflow from ticket intake through resolution. The process diagram identified decision points, handoffs, system inputs, communication outputs, and bottlenecks in escalation timing.",
+        feedback: "Instructor feedback: Excellent workflow logic and clear identification of bottlenecks. Strong visual organization."
+      },
+      "iscomm-memo": {
+        title: "Communication Workflow Memo",
+        meta: "Information Sys & Comm 2200 • Submitted February 26, 2026 • Score: 95%",
+        body: "<strong>Submitted response summary:</strong><br>Michael wrote a memo recommending a shared dashboard and weekly status digest to reduce duplicate messages between operations and support teams. The memo included audience analysis, implementation steps, and expected communication benefits.",
+        feedback: "Instructor feedback: Professional tone and practical recommendation. Consider adding one measurable success metric."
+      },
+      "calc-limits": {
+        title: "Limits Practice Set",
+        meta: "Elementary Applied Calculus 1160 • Submitted February 8, 2026 • Score: 88%",
+        body: "<strong>Submitted response summary:</strong><br>Michael completed limit evaluations using direct substitution, factoring, and graphical interpretation. Most algebraic limits were correct, but two problems involving removable discontinuities needed clearer justification.",
+        feedback: "Instructor feedback: Good effort and mostly correct methods. Review discontinuities and write each algebra step more explicitly."
+      },
+      "calc-derivatives": {
+        title: "Derivative Rules Quiz",
+        meta: "Elementary Applied Calculus 1160 • Submitted March 2, 2026 • Score: 84%",
+        body: "<strong>Submitted response summary:</strong><br>Michael correctly applied the power rule and product rule on most questions. Errors appeared on chain rule setup and one quotient rule simplification problem. The applied marginal-cost question had the right setup but an arithmetic error in the final answer.",
+        feedback: "Instructor feedback: Review chain rule recognition and quotient rule simplification. Office hours recommended before the next quiz."
+      },
+      "global-current-events": {
+        title: "Current Events Analysis 1",
+        meta: "Global Issues 2401 • Submitted February 11, 2026 • Score: 92%",
+        body: "<strong>Submitted response summary:</strong><br>Michael analyzed a  news article about climate migration and connected it to sovereignty, humanitarian responsibility, and resource competition. The response included a short policy implication and a source credibility note.",
+        feedback: "Instructor feedback: Strong connection to course themes. Add more comparative evidence from another region in future analyses."
+      },
+      "global-governance": {
+        title: "Global Governance Reflection",
+        meta: "Global Issues 2401 • Submitted February 25, 2026 • Score: 94%",
+        body: "<strong>Submitted response summary:</strong><br>Michael reflected on how international institutions coordinate responses to transnational problems. He discussed cooperation limits, enforcement challenges, and the role of non-governmental organizations in policy implementation.",
+        feedback: "Instructor feedback: Thoughtful reflection with balanced evaluation. Strong use of course vocabulary."
+      },
+      "psych-methods": {
+        title: "Research Methods Quiz",
+        meta: "Intro to General Psychology 1101 • Submitted February 7, 2026 • Score: 98%",
+        body: "<strong>Submitted response summary:</strong><br>Michael correctly identified independent and dependent variables, distinguished correlation from causation, and answered ethics questions involving consent, confidentiality, and debriefing.",
+        feedback: "Instructor feedback: Excellent command of research-method terminology and experimental design basics."
+      },
+      "psych-learning": {
+        title: "Learning Theory Reflection",
+        meta: "Intro to General Psychology 1101 • Submitted March 5, 2026 • Score: 96%",
+        body: "<strong>Submitted response summary:</strong><br>Michael compared classical conditioning, operant conditioning, reinforcement, and punishment using everyday examples. He connected study habits to reinforcement schedules and explained why immediate feedback can strengthen learning.",
+        feedback: "Instructor feedback: Clear examples and strong conceptual application. Very well organized."
       }
+    };
+
+    function showCourseFeed(courseKey) {
+      activateView("dashboard");
+      courseFeeds.forEach(feed => feed.classList.toggle("active", feed.dataset.course === courseKey));
+      courseDetailTitle.textContent = courseTitles[courseKey][0] + " – Course Feed";
+      courseDetailSubtitle.textContent = courseTitles[courseKey][1];
+      document.querySelector(".course-detail-container").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    courseCards.forEach(card => {
-      card.addEventListener("click", () => {
-        const courseKey = card.dataset.course;
-        if (courseKey) {
-          showCourseFeed(courseKey);
-        }
+    courseCards.forEach(card => card.addEventListener("click", () => showCourseFeed(card.dataset.course)));
+    courseShortcuts.forEach(shortcut => shortcut.addEventListener("click", () => showCourseFeed(shortcut.dataset.course)));
+
+    const assignmentLinks = document.querySelectorAll(".assignment-link");
+    const assignmentPanel = document.getElementById("assignment-detail-panel");
+    const assignmentTitle = document.getElementById("assignment-detail-title");
+    const assignmentMeta = document.getElementById("assignment-detail-meta");
+    const assignmentBody = document.getElementById("assignment-detail-body");
+    const assignmentFeedback = document.getElementById("assignment-detail-feedback");
+
+    assignmentLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        const details = assignmentDetails[link.dataset.assignment];
+        if (!details) return;
+        assignmentPanel.classList.add("active");
+        assignmentTitle.textContent = details.title;
+        assignmentMeta.textContent = details.meta;
+        assignmentBody.innerHTML = details.body;
+        assignmentFeedback.textContent = details.feedback;
+        assignmentPanel.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
   </script>
